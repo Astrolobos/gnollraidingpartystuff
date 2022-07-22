@@ -190,14 +190,7 @@ onEvent("recipes", (event) => {
       "tconstruct:skyroot_planks",
       "tconstruct:bloodshroom_planks",
       "cataclysm:chorus_planks",
-      "blue_skies:bluebright_planks",
-      "blue_skies:starlit_planks",
-      "blue_skies:frostbright_planks",
-      "blue_skies:lunar_planks",
-      "blue_skies:dusk_planks",
-      "blue_skies:maple_planks",
       "blue_skies:crystallized_planks",
-      "blue_skies:cherry_planks",
       "biomesoplenty:fir_planks",
       "biomesoplenty:redwood_planks",
       "biomesoplenty:cherry_planks",
@@ -209,6 +202,8 @@ onEvent("recipes", (event) => {
       "biomesoplenty:magic_planks",
       "biomesoplenty:umbran_planks",
       "biomesoplenty:hellbark_planks",
+      "hexerei:mahogony_planks",
+      "hexerei:willow_planks",
     ],
   });
 
@@ -283,43 +278,86 @@ onEvent("recipes", (event) => {
       "tconstruct:bloodshroom_log",
       "tconstruct:bloodshroom_wood",
       "myrtrees:rubberwood_log",
+      "hexerei:mahogony_log",
+      "hexerei:mahogony_wood",
+      "hexerei:stripped_mahogony_log",
+      "hexerei:stripped_mahogony_wood",  
+      "hexerei:mahogony_log",
+      "hexerei:mahogony_wood",    
+      "hexerei:stripped_willow_log",
+      "hexerei:stripped_willow_wood",          
+    ],
+  });
+
+  event.shaped("4x blue_skies:bluebright_chest", ["WWW", "W W", "WWW"], {
+    W: [
       "blue_skies:bluebright_log",
       "blue_skies:bluebright_wood",
       "blue_skies:stripped_bluebright_log",
       "blue_skies:stripped_bluebright_wood",
+    ],
+  });
+
+  event.shaped("4x blue_skies:starlit_chest", ["WWW", "W W", "WWW"], {
+    W: [
       "blue_skies:starlit_log",
       "blue_skies:starlit_wood",
       "blue_skies:stripped_starlit_log",
       "blue_skies:stripped_starlit_wood"
-          ],
+    ],
   });
 
-  event.shaped("4x minecraft:chest", ["WWW", "W W", "WWW"], {
+  event.shaped("4x blue_skies:frostbright_chest", ["WWW", "W W", "WWW"], {
     W: [
       "blue_skies:frostbright_log",
       "blue_skies:frostbright_wood",
       "blue_skies:stripped_frostbright_log",
       "blue_skies:stripped_frostbright_wood",
+    ],
+  });
+
+  event.shaped("4x blue_skies:lunar_chest", ["WWW", "W W", "WWW"], {
+    W: [
       "blue_skies:lunar_log",
       "blue_skies:lunar_wood",
       "blue_skies:stripped_lunar_log",
       "blue_skies:stripped_lunar_wood",
+    ],
+  });
+
+  event.shaped("4x blue_skies:dusk_chest", ["WWW", "W W", "WWW"], {
+    W: [
       "blue_skies:dusk_log",
       "blue_skies:dusk_wood",
       "blue_skies:stripped_dusk_log",
       "blue_skies:stripped_dusk_wood",
+    ],
+  });
+
+  event.shaped("4x blue_skies:maple_chest", ["WWW", "W W", "WWW"], {
+    W: [
       "blue_skies:maple_log",
       "blue_skies:maple_wood",
       "blue_skies:stripped_maple_log",
       "blue_skies:stripped_maple_wood",
-      "blue_skies:crystallized_log",
-      "blue_skies:crystallized_wood",
-      "blue_skies:stripped_crystallized_log",
-      "blue_skies:stripped_crystallized_wood",
+    ],
+  });
+
+  event.shaped("4x blue_skies:cherry_chest", ["WWW", "W W", "WWW"], {
+    W: [
       "blue_skies:cherry_log",
       "blue_skies:cherry_wood",
       "blue_skies:stripped_cherry_log",
       "blue_skies:stripped_cherry_wood",
+          ],
+  });
+
+  event.shaped("4x minecraft:chest", ["WWW", "W W", "WWW"], {
+    W: [
+      "blue_skies:crystallized_log",
+      "blue_skies:crystallized_wood",
+      "blue_skies:stripped_crystallized_log",
+      "blue_skies:stripped_crystallized_wood",
       "biomesoplenty:fir_log",
       "biomesoplenty:fir_wood",
       "biomesoplenty:stripped_fir_log",
