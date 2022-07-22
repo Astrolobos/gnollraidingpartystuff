@@ -1,0 +1,114 @@
+let metadataFile = JsonIO.read("config/metadata.json");
+
+onEvent("ui.main_menu", (event) => {
+  event.replace((ui) => {
+    ui.fillBackground("ui:textures/bg.png", 4096, 2320);
+    ui.widgetTexture = "ui:textures/widgets.png";
+
+        const buttonSize = 175;
+        const textColor = 0x271a35
+
+        // Singleplayer
+        ui.button((b) => {
+            b.name = Text.translate("menu.singleplayer");
+            b.w = buttonSize;
+            b.x = ui.w / 2 - b.w / 2;
+            b.y = ui.h / 2 - 15;
+            b.action = "minecraft:singleplayer";
+            b.shadow = false;
+            b.color = textColor;
+        });
+
+        // Multiplayer
+        ui.button((b) => {
+            b.name = Text.translate("menu.multiplayer");
+            b.w = buttonSize;
+            b.x = ui.w / 2 - b.w / 2;
+            b.y = ui.h / 2 + 11;
+            b.action = "minecraft:multiplayer";
+            b.shadow = false;
+            b.color = textColor;
+        });
+
+        // Mods
+        ui.button((b) => {
+            b.name = Text.translate("fml.menu.mods");
+            b.w = buttonSize;
+            b.x = ui.w / 2 - b.w / 2;
+            b.y = ui.h / 2 + 36 ;
+            b.action = "forge:mod_list";
+            b.shadow = false;
+            b.color = textColor;
+        });
+
+        // Options
+        ui.button((b) => {
+            b.name = Text.translate("menu.options");
+            b.w = buttonSize / 2 - 2;
+            b.x = ui.w / 2 - b.w - 3;
+            b.y = ui.h / 2 + 74;
+            b.action = "minecraft:options";
+            b.shadow = false;
+            b.color = textColor;
+        });
+
+        // Quit
+        ui.button((b) => {
+            b.name = Text.of("Quit");
+            b.w = buttonSize / 2 - 2;
+            b.x = ui.w / 2 + 2;
+            b.y = ui.h / 2 + 74;
+            b.action = "minecraft:quit";
+            b.shadow = false;
+            b.color = textColor;
+        });
+
+      // Pack logo
+        ui.image((i) => {
+            i.h = 660 / 2 * 0.0013 * ui.h;
+            i.w = 660 / 2 * 0.0013 * ui.h;
+            i.x = ui.w / 2 - i.w / 2;
+      i.texture = "ui:textures/logo.png";
+        });
+
+
+        // Forge version
+        ui.label((l) => {
+            l.h = 8;
+            l.name = Text.of("Forge Version: " + Platform.mods.forge.version).color(
+                textColor
+            );
+            l.x = 4;
+            l.y = ui.h - 28;
+        });
+
+        // Mods loaded
+        ui.label((l) => {
+            l.h = 8;
+            l.name = Text.of(Platform.mods.size() + " Mods Loaded").color(textColor);
+            l.x = 4;
+            l.y = ui.h - 19;
+        });
+
+        // Mojang
+        ui.label((l) => {
+            l.h = 8;
+            l.name = Text.of("Copyright Mojang AB").color(textColor);
+            l.x = 4;
+            l.y = ui.h - 10;
+        });
+
+        // Pack name and version from metadata file
+        // metadataFile.name + " v" + metadataFile.version.name
+        if (metadataFile) {
+            ui.label((l) => {
+                l.h = 8;
+                l.name = Text.of(
+                    metadataFile.name + " v" + metadataFile.version.name
+                ).color(textColor);
+                l.x = 4;
+                l.y = ui.h - 37;
+            });
+        }
+    });
+});
