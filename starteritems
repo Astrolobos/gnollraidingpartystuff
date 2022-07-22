@@ -1,0 +1,29 @@
+// priority: 0
+
+settings.logAddedRecipes = true
+settings.logRemovedRecipes = true
+settings.logSkippedRecipes = false
+settings.logErroringRecipes = true
+
+console.info('Loading Server Resources...')
+
+
+// Listen to player login event
+
+//Starter Items
+onEvent('player.logged_in', event => {
+    // Check if player doesn't have "starting_items" stage yet
+    if (!event.player.stages.has('starting_items')) {
+        // Add the stage
+        event.player.stages.add('starting_items')
+        // Give some items to player
+        event.player.give(Item.of('akashictome:tome', '{"akashictome:data":{ars_nouveau:{Count:1b,id:"ars_nouveau:worn_notebook" ,tag:{"ars_nouveau:worn_notebook}},littlelogistics:{Count:1b,id:"patchouli:guide_book",tag:{"patchouli:book":"littlelogistics:guide"}}'))
+
+
+
+
+        
+    }
+
+
+})
