@@ -371,8 +371,7 @@ onEvent("recipes", (event) => {
     ],
 
   event.remove({ id: "quark:building/crafting/compressed/charcoal_block" });
-  event.remove({
-    id: "quark:building/crafting/compressed/charcoal_block_uncompress",
+  event.remove({ id: "quark:building/crafting/compressed/charcoal_block_uncompress",
   });
 
   event.remove({ id: "quark:building/crafting/furnaces/cobblestone_furnace" });
