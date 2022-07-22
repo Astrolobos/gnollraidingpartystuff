@@ -1,0 +1,461 @@
+// priority: 100
+
+settings.logAddedRecipes = false;
+settings.logRemovedRecipes = false;
+settings.logSkippedRecipes = false;
+settings.logErroringRecipes = false;
+
+
+
+
+onEvent("recipes", (event) => {
+  const { smelting, blasting } = event.recipes.minecraft;
+
+  const sleepingBagsColors = [
+    "white",
+    "orange",
+    "magenta",
+    "light_blue",
+    "yellow",
+    "lime",
+    "pink",
+    "gray",
+    "light_gray",
+    "cyan",
+    "purple",
+    "blue",
+    "brown",
+    "green",
+    "red",
+    "black",
+  ];
+
+  sleepingBagsColors.forEach((color) => {
+    event.remove({ id: `comforts:sleeping_bag_${color}` });
+    event.shaped(
+      Item.of(`comforts:sleeping_bag_${color}`),
+      [" W ", " W ", " W "],
+      {
+        W: `minecraft:${color}_wool`,
+      }
+    );
+  });
+
+  const createCrushedOre = [
+    {
+      name: "tin",
+      raw: "ftbic:tin_chunk",
+      ore: "ftbic:tin_ore",
+      deepslate_ore: "ftbic:deepslate_tin_ore",
+    },
+    {
+      name: "lead",
+      raw: "ftbic:lead_chunk",
+      ore: "ftbic:lead_ore",
+      deepslate_ore: "ftbic:deepslate_lead_ore",
+    },
+    {
+      name: "aluminum",
+      raw: "ftbic:aluminum_chunk",
+      ore: "ftbic:aluminum_ore",
+      deepslate_ore: "ftbic:deepslate_aluminum_ore",
+    },
+    {
+      name: "uranium",
+      raw: "ftbic:uranium_chunk",
+      ore: "ftbic:uranium_ore",
+      deepslate_ore: "ftbic:deepslate_uranium_ore",
+    },
+
+  ];
+
+  createCrushedOre.forEach((r) => {
+    event.recipes.createCrushing(
+      [
+        `create:crushed_${r.name}_ore`,
+        Item.of(`create:crushed_${r.name}_ore`).withChance(0.25),
+        Item.of(`create:experience_nugget`).withChance(0.75),
+        Item.of(`minecraft:cobblestone`).withChance(0.125),
+      ],
+      r.ore
+    );
+    event.recipes.createCrushing(
+      [
+        `2x create:crushed_${r.name}_ore`,
+        Item.of(`create:crushed_${r.name}_ore`).withChance(0.25),
+        Item.of(`create:experience_nugget`).withChance(0.75),
+        Item.of(`minecraft:cobbled_deepslate`).withChance(0.125),
+      ],
+      r.deepslate_ore
+    );
+    event.recipes.createCrushing(
+      [
+        `create:crushed_${r.name}_ore`,
+        Item.of(`create:experience_nugget`).withChance(0.75),
+      ],
+      r.raw
+    );
+  });
+
+  let corundumCraftingUncrafting = function (colors) {
+    colors.forEach((color) => {
+      event.shaped("quark:" + color + "_corundum", ["CC", "CC"], {
+        C: "quark:" + color + "_corundum_cluster",
+      });
+      event.shapeless("4x quark:" + color + "_corundum_cluster", [
+        "quark:" + color + "_corundum",
+      ]);
+    });
+  };
+
+  let stonecutter = function (arrayOfBlocks) {
+    let cpt = 0;
+    while (cpt < arrayOfBlocks.length) {
+      let otherBlocks = arrayOfBlocks
+        .slice(0, cpt)
+        .concat(arrayOfBlocks.slice(cpt + 1));
+      event.stonecutting(arrayOfBlocks[cpt], otherBlocks);
+      cpt++;
+    }
+  };
+
+  stonecutter(["create:limestone", "quark:limestone"]);
+  corundumCraftingUncrafting([
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "violet",
+    "white",
+    "black",
+  ]);
+
+  event.shapeless(Item.of("minecraft:ladder"), ["quark:spruce_ladder"]);
+  event.shapeless(Item.of("minecraft:ladder"), ["quark:birch_ladder"]);
+  event.shapeless(Item.of("minecraft:ladder"), ["quark:jungle_ladder"]);
+  event.shapeless(Item.of("minecraft:ladder"), ["quark:acacia_ladder"]);
+  event.shapeless(Item.of("minecraft:ladder"), ["quark:dark_oak_ladder"]);
+  event.shapeless(Item.of("minecraft:ladder"), ["quark:crimson_ladder"]);
+  event.shapeless(Item.of("minecraft:ladder"), ["quark:warped_ladder"]);
+  event.shapeless("4x minecraft:clay_ball", ["#forge:storage_blocks/clay"]);
+
+  event.remove({ id: "minecraft:cut_copper_from_copper_block_stonecutting" });
+  event.stonecutting("minecraft:copper_block", [
+    "minecraft:cut_copper",
+    "minecraft:exposed_cut_copper",
+    "minecraft:weathered_cut_copper",
+    "minecraft:oxidized_cut_copper",
+  ]);
+  event.stonecutting("minecraft:cut_copper", "minecraft:copper_block");
+
+  event.remove({ id: "minecraft:bread" });
+  event.remove({ id: "quark:tweaks/crafting/utility/bent/bread" });
+  event.shapeless("minecraft:bread", [
+    "#forge:crops/wheat",
+    "#forge:crops/wheat",
+    "#forge:crops/wheat",
+  ]);
+  event.shapeless("minecraft:wheat_seeds", ["#forge:crops/wheat"]);
+
+  event.shaped("16x minecraft:stick", ["L", "L"], {
+    L: "#minecraft:logs",
+  });
+
+  event.shaped("minecraft:chest", ["WWW", "W W", "WWW"], {
+    W: [
+      "ars_nouveau:archwood_planks",
+      "botania:livingwood_planks",
+      "botania:mossy_livingwood_planks",
+      "botania:framed_livingwood",
+      "botania:pattern_framed_livingwood",
+      "botania:dreamwood_planks",
+      "botania:mossy_dreamwood_planks",
+      "botania:framed_dreamwood",
+      "botania:pattern_framed_dreamwood",
+      "botania:shimmerwood_planks",
+      "forbidden_arcanus:fungyss_planks",
+      "forbidden_arcanus:cherrywood_planks",
+      "forbidden_arcanus:carved_cherrywood_planks",
+      "forbidden_arcanus:mysterywood_planks",
+      "forbidden_arcanus:edelwood_planks",
+      "forbidden_arcanus:arcane_edelwood_planks",
+      "integrateddynamics:menril_planks",
+      "myrtrees:rubberwood_planks",
+      "naturesaura:ancient_planks",
+      "quark:azalea_planks",
+      "quark:blossom_planks",
+      "tconstruct:greenheart_planks",
+      "tconstruct:skyroot_planks",
+      "tconstruct:bloodshroom_planks",
+      "cataclysm:chorus_planks",
+      "blue_skies:bluebright_planks",
+      "blue_skies:starlit_planks",
+      "blue_skies:frostbright_planks",
+      "blue_skies:lunar_planks",
+      "blue_skies:dusk_planks",
+      "blue_skies:maple_planks",
+      "blue_skies:crystallized_planks",
+      "blue_skies:cherry_planks",
+      "biomesoplenty:fir_planks",
+      "biomesoplenty:redwood_planks",
+      "biomesoplenty:cherry_planks",
+      "biomesoplenty:mahogony_planks",
+      "biomesoplenty:jacaranda_planks",
+      "biomesoplenty:palm_planks",
+      "biomesoplenty:willow_planks",
+      "biomesoplenty:dead_planks",
+      "biomesoplenty:magic_planks",
+      "biomesoplenty:umbran_planks",
+      "biomesoplenty:hellbark_planks",
+    ],
+  });
+
+  event.shaped("4x minecraft:chest", ["WWW", "W W", "WWW"], {
+    W: [
+      "ars_nouveau:blue_archwood_log",
+      "ars_nouveau:blue_archwood_wood",
+      "ars_nouveau:purple_archwood_log",
+      "ars_nouveau:purple_archwood_wood",
+      "ars_nouveau:green_archwood_log",
+      "ars_nouveau:green_archwood_wood",
+      "ars_nouveau:red_archwood_log",
+      "ars_nouveau:red_archwood_wood",
+      "ars_nouveau:stripped_blue_archwood_log",
+      "ars_nouveau:stripped_blue_archwood_wood",
+      "ars_nouveau:stripped_green_archwood_log",
+      "ars_nouveau:stripped_green_archwood_wood",
+      "ars_nouveau:stripped_red_archwood_log",
+      "ars_nouveau:stripped_red_archwood_wood",
+      "ars_nouveau:stripped_purple_archwood_log",
+      "ars_nouveau:stripped_purple_archwood_wood",
+      "botania:livingwood_log",
+      "botania:stripped_livingwood_log",
+      "botania:glimmering_livingwood_log",
+      "botania:glimmering_stripped_livingwood_log",
+      "botania:livingwood",
+      "botania:stripped_livingwood",
+      "botania:glimmering_stripped_livingwood",
+      "botania:glimmering_livingwood",
+      "botania:dreamwood_log",
+      "botania:glimmering_dreamwood_log",
+      "botania:stripped_dreamwood_log",
+      "botania:glimmering_stripped_dreamwood_log",
+      "botania:dreamwood",
+      "botania:stripped_dreamwood",
+      "botania:glimmering_stripped_dreamwood",
+      "botania:glimmering_dreamwood",
+      "forbidden_arcanus:cherrywood_log",
+      "forbidden_arcanus:thin_cherrywood_log",
+      "forbidden_arcanus:mysterywood_log",
+      "forbidden_arcanus:edelwood_log",
+      "forbidden_arcanus:carved_edelwood_log",
+      "forbidden_arcanus:stripped_cherrywood_log",
+      "forbidden_arcanus:stripped_mysterywood_log",
+      "forbidden_arcanus:cherrywood",
+      "forbidden_arcanus:mysterywood",
+      "forbidden_arcanus:stripped_cherrywood",
+      "forbidden_arcanus:stripped_mysterywood",
+      "integrateddynamics:menril_log",
+      "integrateddynamics:menril_log_stripped",
+      "integrateddynamics:menril_wood",
+      "integrateddynamics:menril_wood_stripped",
+      "integrateddynamics:menril_log_filled",
+      "quark:azalea_log",
+      "quark:azalea_wood",
+      "quark:stripped_azalea_log",
+      "quark:stripped_azalea_wood",
+      "quark:blossom_log",
+      "quark:blossom_wood",
+      "quark:stripped_blossom_log",
+      "quark:stripped_blossom_wood",
+      "tconstruct:stripped_greenheart_log",
+      "tconstruct:stripped_greenheart_wood",
+      "tconstruct:greenheart_log",
+      "tconstruct:greenheart_wood",
+      "tconstruct:stripped_skyroot_log",
+      "tconstruct:stripped_skyroot_wood",
+      "tconstruct:skyroot_log",
+      "tconstruct:skyroot_wood",
+      "tconstruct:stripped_bloodshroom_log",
+      "tconstruct:stripped_bloodshroom_wood",
+      "tconstruct:bloodshroom_log",
+      "tconstruct:bloodshroom_wood",
+      "myrtrees:rubberwood_log",
+      "blue_skies:bluebright_log",
+      "blue_skies:bluebright_wood",
+      "blue_skies:stripped_bluebright_log",
+      "blue_skies:stripped_bluebright_wood",
+      "blue_skies:starlit_log",
+      "blue_skies:starlit_wood",
+      "blue_skies:stripped_starlit_log",
+      "blue_skies:stripped_starlit_wood"
+      "blue_skies:frostbright_log",
+      "blue_skies:frostbright_wood",
+      "blue_skies:stripped_frostbright_log",
+      "blue_skies:stripped_frostbright_wood",
+      "blue_skies:lunar_log",
+      "blue_skies:lunar_wood",
+      "blue_skies:stripped_lunar_log",
+      "blue_skies:stripped_lunar_wood",
+      "blue_skies:dusk_log",
+      "blue_skies:dusk_wood",
+      "blue_skies:stripped_dusk_log",
+      "blue_skies:stripped_dusk_wood",
+      "blue_skies:maple_log",
+      "blue_skies:maple_wood",
+      "blue_skies:stripped_maple_log",
+      "blue_skies:stripped_maple_wood",
+      "blue_skies:crystallized_log",
+      "blue_skies:crystallized_wood",
+      "blue_skies:stripped_crystallized_log",
+      "blue_skies:stripped_crystallized_wood",
+      "blue_skies:cherry_log",
+      "blue_skies:cherry_wood",
+      "blue_skies:stripped_cherry_log",
+      "blue_skies:stripped_cherry_wood",
+      "biomesoplenty:fir_log",
+      "biomesoplenty:fir_wood",
+      "biomesoplenty:stripped_fir_log",
+      "biomesoplenty:stripped_fir_wood",
+      "biomesoplenty:redwood_log",
+      "biomesoplenty:redwood_wood",
+      "biomesoplenty:stripped_redwood_log",
+      "biomesoplenty:stripped_redwood_wood",
+      "biomesoplenty:cherry_log",
+      "biomesoplenty:cherry_wood",
+      "biomesoplenty:stripped_cherry_log",
+      "biomesoplenty:stripped_cherry_wood",
+      "biomesoplenty:mahogony_log",
+      "biomesoplenty:mahogony_wood",
+      "biomesoplenty:stripped_mahogony_log",
+      "biomesoplenty:stripped_mahogony_wood",
+      "biomesoplenty:jacaranda_log",
+      "biomesoplenty:jacaranda_wood",
+      "biomesoplenty:stripped_jacaranda_log",
+      "biomesoplenty:stripped_jacaranda_wood",
+      "biomesoplenty:palm_log",
+      "biomesoplenty:palm_wood",
+      "biomesoplenty:stripped_palm_log",
+      "biomesoplenty:stripped_palm_wood",
+      "biomesoplenty:willow_log",
+      "biomesoplenty:willow_wood",
+      "biomesoplenty:stripped_willow_log",
+      "biomesoplenty:stripped_willow_wood",
+      "biomesoplenty:dead_log",
+      "biomesoplenty:dead_wood",
+      "biomesoplenty:stripped_dead_log",
+      "biomesoplenty:stripped_dead_wood",
+      "biomesoplenty:magic_log",
+      "biomesoplenty:magic_wood",
+      "biomesoplenty:stripped_magic_log",
+      "biomesoplenty:stripped_magic_wood",
+      "biomesoplenty:umbran_log",
+      "biomesoplenty:umbran_wood",
+      "biomesoplenty:stripped_umbran_log",
+      "biomesoplenty:stripped_umbran_wood",
+      "biomesoplenty:hellbark_log",
+      "biomesoplenty:hellbark_wood",
+      "biomesoplenty:stripped_hellbark_log",
+      "biomesoplenty:stripped_hellbark_wood",
+      "ars_elemental:yellow_archwood",
+      "ars_elemental:stripped_yellow_archwood",
+      "ars_elemental:stripped_yellow_archwood_log",
+      "ars_elemental:yellow_archwood",
+      "ars_elemental:yellow_archwood_log",
+    ],
+  });
+
+  event.remove({ id: "quark:building/crafting/compressed/charcoal_block" });
+  event.remove({
+    id: "quark:building/crafting/compressed/charcoal_block_uncompress",
+  });
+
+  event.remove({ id: "quark:building/crafting/furnaces/cobblestone_furnace" });
+  event.shaped("minecraft:furnace", ["CCC", "C C", "CCC"], {
+    C: [
+      "minecraft:cobblestone",
+      "minecraft:mossy_cobblestone",
+      "minecraft:infested_cobblestone",
+    ],
+  });
+  event.remove({ output: "quark:brick_vertical_slab" });
+  event.remove({ id: "minecraft:daylight_detector" });
+  event.remove({ id: "minecraft:cake" });
+  event.remove({ id: "minecraft:comparator" });
+  event.remove({ id: "quark:building/crafting/compressed/bamboo_block" });
+
+  event.remove({ id: "quark:building/crafting/gold_bars" });
+  event.remove({ id: "createdeco:gold_bars_overlay" });
+  event.remove({ id: "createdeco:gold_bars"});
+  event.remove({ id: "createdeco:gold_bars_from_panel"});
+
+  event.shapeless("createdeco:gold_bars", "quark:gold_bars");
+  event.shapeless("quark:gold_bars", "createdeco:gold_bars_overlay");
+  event.shapeless("createdeco:gold_bars_overlay", "createdeco:gold_bars");
+
+  event.shapeless("alloyed:bronze_block", "ftbic:bronze_block");
+  event.shapeless("ftbic:bronze_block", "alloyed:bronze_block");
+
+  event.remove({ id: "botania:livingwood_twig" });
+  event.shaped("botania:livingwood_twig", ["CC"], {
+    C: ["#botania:livingwood_logs"],
+  });
+
+  event.remove({ output: "structurize:sceptergold" });
+  event.shaped("structurize:sceptergold", [" I", "S "], {
+    S: "#forge:rods/wooden",
+    I: "#minecraft:stone_crafting_materials",
+  });
+
+  event.remove({ output: "structurize:sceptersteel" });
+  event.shaped("structurize:sceptersteel", ["  S", " I ", "S  "], {
+    S: "#forge:rods/wooden",
+    I: "minecraft:iron_ingot",
+  });
+  event.remove({ output: "forbidden_arcanus:boom_arrow" });
+  event.shaped("forbidden_arcanus:boom_arrow", [" B ", "AAA", " A "], {
+    B: "minecraft:tnt",
+    A: "minecraft:arrow",
+  });
+
+  event.remove({ output: "botania:dreamwood_twig" });
+  event.shaped("botania:dreamwood_twig", ["II"], {
+    I: "#botania:dreamwood_logs",
+  });
+
+  event.remove({ id: "ftbic:extruding/copper_wire" });
+  event.remove({ id: "ftbic:extruding/gold_wire" });
+  event.remove({ id: "ftbic:extruding/aluminum_wire" });
+  event.remove({ id: "ftbic:extruding/enderium_wire" });
+  event.recipes.ftbic.rolling(`2x ftbic:copper_wire`, [`#forge:plates/copper`]);
+  event.recipes.ftbic.rolling(`2x ftbic:gold_wire`, [`#forge:plates/gold`]);
+  event.recipes.ftbic.rolling(`2x ftbic:aluminum_wire`, [
+    `#forge:plates/aluminum`,
+  ]);
+  event.recipes.ftbic.rolling(`2x ftbic:enderium_wire`, [
+    `#forge:plates/enderium`,
+  ]);
+
+  event.remove({ id: "forbidden_arcanus:fungyss_stairs" });
+  event.shaped("forbidden_arcanus:fungyss_stairs", ["I  ", "II ", "III"], {
+    I: "forbidden_arcanus:fungyss_planks",
+  });
+  event.remove({ id: "forbidden_arcanus:cherrywood_stairs" });
+  event.shaped("forbidden_arcanus:cherrywood_stairs", ["I  ", "II ", "III"], {
+    I: "forbidden_arcanus:cherrywood_planks",
+  });
+  event.remove({ id: "forbidden_arcanus:mysterywood_stairs" });
+  event.shaped("forbidden_arcanus:mysterywood_stairs", ["I  ", "II ", "III"], {
+    I: "forbidden_arcanus:mysterywood_planks",
+  });
+  event.remove({ id: "forbidden_arcanus:edelwood_stairs" });
+  event.shaped("forbidden_arcanus:edelwood_stairs", ["I  ", "II ", "III"], {
+    I: "forbidden_arcanus:edelwood_planks",
+  });
+
+
+ });
+
+
