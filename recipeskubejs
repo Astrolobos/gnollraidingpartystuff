@@ -291,6 +291,10 @@ onEvent("recipes", (event) => {
       "blue_skies:starlit_wood",
       "blue_skies:stripped_starlit_log",
       "blue_skies:stripped_starlit_wood"
+     ],    
+     });
+      event.shaped("4x minecraft:chest", ["WWW", "W W", "WWW"], {
+    W: [
       "blue_skies:frostbright_log",
       "blue_skies:frostbright_wood",
       "blue_skies:stripped_frostbright_log",
@@ -365,7 +369,6 @@ onEvent("recipes", (event) => {
       "ars_elemental:yellow_archwood",
       "ars_elemental:yellow_archwood_log",
     ],
-  });
 
   event.remove({ id: "quark:building/crafting/compressed/charcoal_block" });
   event.remove({
