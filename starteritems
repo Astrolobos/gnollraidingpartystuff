@@ -17,13 +17,16 @@ onEvent('player.logged_in', event => {
         // Add the stage
         event.player.stages.add('starting_items')
         // Give some items to player
-        event.player.give(Item.of('akashictome:tome', '{"akashictome:data":{ars_nouveau:{Count:1b,id:"ars_nouveau:worn_notebook" ,tag:{"ars_nouveau:worn_notebook}},littlelogistics:{Count:1b,id:"patchouli:guide_book",tag:{"patchouli:book":"littlelogistics:guide"}}'))
+        event.player.give('ars_nouveau:novice_spell_book')
+        event.player.give(Item.of('akashictome:tome:', '{"akashictome:data": {tconstruct: {id: "tconstruct:materials_and_you" as string, Count: 1 as byte, tag: {mantle: {book: {current_page: "intro.partbuilder_craft" as string}}, "akashictome:displayName": {text: "{\"translate\":\"item.tconstruct.materials_and_you\"}" as string}, "akashictome:is_morphing": 1 as byte, display: {Name: "{\"translate\":\"akashictome.sudo_name\",\"with\":[{\"color\":\"green\",\"translate\":\"item.tconstruct.materials_and_you\"}]}" as string}}}, byg: {id: "byg:biomepedia" as string, Count: 1 as byte}, ars_nouveau: {id: "ars_nouveau:worn_notebook" as string, Count: 1 as byte}, theoneprobe: {id: "theoneprobe:probenote" as string, Count: 1 as byte}, blue_skies: {id: "blue_skies:blue_journal" as string, Count: 1 as byte}, hexcasting: {id: "patchouli:guide_book" as string, Count: 1 as byte, tag: {"patchouli:book": "hexcasting:thehexbook" as string}}, alexsmobs: {id: "alexsmobs:animal_dictionary" as string, Count: 1 as byte}, naturescompass: {id: "naturescompass:naturescompass" as string, Count: 1 as byte, tag: {"akashictome:displayName": {text: "{\"translate\":\"item.naturescompass.naturescompass\"}" as string}, "akashictome:is_morphing": 1 as byte, display: {Name: "{\"translate\":\"akashictome.sudo_name\",\"with\":[{\"color\":\"green\",\"translate\":\"item.naturescompass.naturescompass\"}]}" as string}}}}'));
 
-
-
-
-        
     }
-
-
-})
+        event.player.give(
+            Item.of(
+            "eccentrictome:tome",
+            '{"eccentrictome:data":{tconstruct:{"0": {id: "tconstruct:materials_and_you" as string, Count: 1 as byte}}, byg: {"0": {id: "byg:biomepedia" as string, Count: 1 as byte}}, ars_nouveau: {"0": {id: "ars_nouveau:worn_notebook" as string, Count: 1 as byte}}, theoneprobe: {"0": {id: "theoneprobe:probenote" as string, Count: 1 as byte}}, hexcasting: {"0": {id: "patchouli:guide_book" as string, Count: 1 as byte, tag: {"patchouli:book": "hexcasting:thehexbook" as string}}}, alexsmobs: {"0": {id: "alexsmobs:animal_dictionary" as string, Count: 1 as byte}}, littlelogistics: {"0": {id: "patchouli:guide_book" as string, Count: 1 as byte, tag: {"patchouli:book": "littlelogistics:guide" as string}}}, naturescompass: {"0": {id: "naturescompass:naturescompass" as string, Count: 1 as byte}}}, "eccentrictome:version": 1 as int})
+            
+            
+            Item.of(
+            'eccentrictome:tome', 
+            '{"eccentrictome:mods":{alexsmobs:{0:{Count:1b,id:"alexsmobs:animal_dictionary"}},ars_nouveau:{0:{Count:1b,id:"ars_nouveau:worn_notebook"}},byg:{0:{Count:1b,id:"byg:biomepedia"}},hexcasting:{0:{Count:1b,id:"patchouli:guide_book",tag:{"patchouli:book":"hexcasting:thehexbook"}}},immersiveengineering:{0:{Count:1b,id:"immersiveengineering:manual"}},littlelogistics:{0:{Count:1b,id:"patchouli:guide_book",tag:{"patchouli:book":"littlelogistics:guide"}}},naturescompass:{0:{Count:1b,id:"naturescompass:naturescompass",tag:{}}},tconstruct:{0:{Count:1b,id:"tconstruct:materials_and_you"},1:{Count:1b,id:"tconstruct:fantastic_foundry"},2:{Count:1b,id:"tconstruct:tinkers_gadgetry"},3:{Count:1b,id:"tconstruct:encyclopedia"}},theoneprobe:{0:{Count:1b,id:"theoneprobe:probenote"}}},"eccentrictome:version":1}')
