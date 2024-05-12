@@ -47,5 +47,6 @@ ServerEvents.tags("item", (event) => {
 	event.add("ars_nouveau:golem/shard", ["minecraft:nether_gold_nugget"]);
 	event.add("ars_nouveau:golem/shard", ["minecraft:glowstone_dust"]);
 	event.add("ars_nouveau:golem/shard", ["minecraft:netherite_scrap"]);
+	event.add("ars_nouveau:golem/shard", ["minecraft:echo_shard"]);
 
 });
