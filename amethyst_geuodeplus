@@ -34,6 +34,7 @@ ServerEvents.tags("block", (event) => {
 	event.add("ars_nouveau:golem/cluster", ["geode_plus:nether_gold_nugget_cluster"]);
 	event.add("ars_nouveau:golem/cluster", ["geode_plus:nether_glowstone_cluster"]);
 	event.add("ars_nouveau:golem/cluster", ["geode_plus:nether_ancient_debris_cluster"]);
+	event.add("ars_nouveau:golem/cluster", ["geode_plus:echo_crystal"]);
 	});
 ServerEvents.tags("item", (event) => {
 	event.add("ars_nouveau:golem/shard", ["geode_plus:wrappist_shard"]);
