@@ -15,6 +15,7 @@ ServerEvents.tags("block", (event) => {
 	event.add("ars_nouveau:golem/budding", ["geode_plus:budding_blackstone_quartz"]);
 	event.add("ars_nouveau:golem/budding", ["geode_plus:budding_nether_gold_nugget"]);
 	event.add("ars_nouveau:golem/budding", ["geode_plus:budding_basalt_gold_nugget"]);
+	event.add("ars_nouveau:golem/budding", ["geode_plus:nether_glowstone_cluster_block"]);
 	event.add("ars_nouveau:golem/budding", ["geode_plus:budding_blackstone_gold_nugget"]);
 	event.add("ars_nouveau:golem/budding", ["geode_plus:budding_nether_ancient_debris"]);
 	event.add("ars_nouveau:golem/budding", ["geode_plus:budding_basalt_ancient_debris"]);
